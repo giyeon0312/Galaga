@@ -1,0 +1,22 @@
+#pragma once
+
+#include "StdAfx.h"
+#include "Actor.h"
+#include <vector>
+
+class CActorManager
+	:public Singleton<CActorManager>
+{
+public:
+	CActorManager();
+	~CActorManager();
+
+private:
+	vector<CActor*> m_pActors;
+
+public:
+	void Update();
+	void Render();
+
+};
+
