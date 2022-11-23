@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "Engine.h"
 
 CActor::CActor()
 {
@@ -25,22 +26,10 @@ bool CActor::Init()
 	return true;
 }
 
+
 void CActor::DrawActor()
 {
+	CEngine::GetInstance()->SetConsolePos(m_tPos.x, m_tPos.y);
+	cout << m_sActor;
 }
 
-void CActor::MoveDown()
-{
-}
-
-void CActor::MoveUp()
-{
-}
-
-void CActor::MoveRight()
-{
-}
-
-void CActor::MovdLeft()
-{
-}

@@ -11,6 +11,7 @@ public:
 	~CEngine();
 
 private:
+	HANDLE m_hConsole;
 	bool m_bLoop;
 
 public:

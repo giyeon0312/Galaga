@@ -26,6 +26,9 @@ public:
 	}
 
 public:
+	int GetStageState(int x, int y);
+
+public:
 	bool Init();
 	void Render();
 };

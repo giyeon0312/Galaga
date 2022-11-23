@@ -9,6 +9,15 @@ CStage::~CStage()
 {
 }
 
+int CStage::GetStageState(int x, int y)
+{
+	if (y <= 0 || y >= STAGE_HEIGHT)
+		return -1;
+	if (x <= 0 || x >= STAGE_WIDTH)
+		return -1;
+	return m_Stage[y][x];
+}
+
 bool CStage::Init()
 {
 	for (int i = 0; i < STAGE_HEIGHT; ++i)
@@ -35,6 +44,7 @@ void CStage::Render()
 				cout << "бс";
 			else
 				cout << "  ";
+
 			/*int actor = m_Stage[i][j];
 			switch (actor)
 			{

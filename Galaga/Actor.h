@@ -6,7 +6,7 @@ class CActor
 {
 public:
 	CActor();
-	~CActor();
+	virtual ~CActor();
 
 protected:
 	//char m_sActor[ACTOR_SIZE];		// 액터 모양
@@ -34,12 +34,8 @@ public:
 
 public:
 	virtual bool Init();
-	virtual void DrawActor();
-
-public:
-	void MoveDown();
-	void MoveUp();
-	void MoveRight();
-	void MovdLeft();
+	virtual void Update() = 0;
+	//virtual void DrawActor();
+	void DrawActor();
 };
 

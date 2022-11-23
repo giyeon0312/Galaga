@@ -2,6 +2,7 @@
 
 #include "StdAfx.h"
 #include "Actor.h"
+#include "Player.h"
 #include <vector>
 
 class CActorManager
