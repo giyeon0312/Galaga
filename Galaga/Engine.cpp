@@ -26,6 +26,8 @@ bool CEngine::Init()
 	if (!CStageManager::GetInstance()->Init())
 		return false;
 
+	CActorManager::GetInstance()->CreateActor(ACTOR_TYPE::ACTOR_PLAYER);
+	
 	return true;
 }
 

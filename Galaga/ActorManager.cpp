@@ -4,7 +4,6 @@ CActorManager* CActorManager::_instance = nullptr;
 
 CActorManager::CActorManager()
 {
-	m_pActors.push_back(new CPlayer());
 }
 
 CActorManager::~CActorManager()
@@ -30,4 +29,34 @@ void CActorManager::Render()
 		CActor* actor = m_pActors[i];
 		actor->DrawActor();
 	}
+}
+
+void CActorManager::CreateActor(ACTOR_TYPE eType)
+{
+	CActor* pActor = NULL;
+	
+	switch(eType)
+	{
+		case ACTOR_PLAYER:
+			pActor = new CPlayer();
+			break;
+		case ACTOR_PBULLET:
+			break;
+		case ACTOR_ENEMY1:
+			break;
+		case ACTOR_ENEMY2:
+			break;
+		case ACTOR_ENEMY3: 
+			break;
+		case ACTOR_EBULLET: 
+			break;
+	
+	}
+
+	if (!pActor->Init())
+	{
+		SAFE_DELETE(pActor);
+	}
+
+	m_pActors.push_back(pActor);
 }

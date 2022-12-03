@@ -6,11 +6,6 @@
 
 CPlayer::CPlayer()
 {
-	m_sActor = "♣";
-
-	// 초기 위치
-	m_tPos.x = 3;
-	m_tPos.y = 3;
 }
 
 CPlayer::~CPlayer()
@@ -22,10 +17,10 @@ bool CPlayer::Init()
 	m_sActor = "♣";
 
 	// 초기 위치
-	m_tPos.x = 3;
-	m_tPos.y = 3; 				
+	m_tPos.x = 16;
+	m_tPos.y = 24; 				
 
-	return false;
+	return true;
 }
 
 void CPlayer::Update()
@@ -58,7 +53,6 @@ void CPlayer::MoveDown()
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
 
 	if(pCurStage->GetStageState(m_tPos.x, m_tPos.y)!=-1)
-
 
 	m_tPos.y += 2;
 }

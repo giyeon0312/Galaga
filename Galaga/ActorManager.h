@@ -18,6 +18,6 @@ private:
 public:
 	void Update();
 	void Render();
-
+	void CreateActor(ACTOR_TYPE eType);
 };
 
