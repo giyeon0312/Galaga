@@ -29,7 +29,9 @@ bool CActor::Init()
 
 void CActor::DrawActor()
 {
+	CEngine::GetInstance()->SetConsoleColor(m_nActorColor);
 	CEngine::GetInstance()->SetConsolePos(m_tPos.x, m_tPos.y);
 	cout << m_sActor;
+	CEngine::GetInstance()->SetConsoleColor(0xF); // ±âº» ForeColor Èò»ö.
 }
 

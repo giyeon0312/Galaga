@@ -15,6 +15,7 @@ CPlayer::~CPlayer()
 bool CPlayer::Init()
 {
 	m_sActor = "♣";
+	m_nActorColor = 0xA;
 
 	// 초기 위치
 	m_tPos.x = 16;

@@ -54,3 +54,7 @@ void CEngine::SetConsolePos(int x, int y)
 	SetConsoleCursorPosition(m_hConsole, pos);
 }
 
+void CEngine::SetConsoleColor(int color)
+{
+	SetConsoleTextAttribute(m_hConsole, color);
+}

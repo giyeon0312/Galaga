@@ -11,6 +11,7 @@ public:
 protected:
 	//char m_sActor[ACTOR_SIZE];		// 액터 모양
 	string		m_sActor;
+	int			m_nActorColor;		// 255컬러.
 	int			m_nActorSize;
 	POSITION	m_tPos;				// 현재 위치
 
