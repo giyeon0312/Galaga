@@ -15,7 +15,6 @@ void CActorManager::Update()
 	int cnt = m_pActors.size();
 	for (int i = 0; i < cnt; i++)
 	{
-		// CActor::Update를 virtual로 하기
 		CActor* actor = m_pActors[i];
 		actor->Update();
 	}
@@ -31,7 +30,7 @@ void CActorManager::Render()
 	}
 }
 
-void CActorManager::CreateActor(ACTOR_TYPE eType)
+void CActorManager::CreateActor(ACTOR_TYPE eType,int x = 0, int y = 0)
 {
 	CActor* pActor = NULL;
 	
@@ -42,11 +41,12 @@ void CActorManager::CreateActor(ACTOR_TYPE eType)
 			break;
 		case ACTOR_PBULLET:
 			break;
-		case ACTOR_ENEMY1:
+		case ACTOR_ENEMY_RED:
+			pActor = new CEnemyRed();
 			break;
-		case ACTOR_ENEMY2:
+		case ACTOR_ENEMY_BLUE:
 			break;
-		case ACTOR_ENEMY3: 
+		case ACTOR_ENEMY_YELLOW: 
 			break;
 		case ACTOR_EBULLET: 
 			break;

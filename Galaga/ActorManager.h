@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "Actor.h"
 #include "Player.h"
-#include <vector>
+#include "EnemyRed.h"
 
 class CActorManager
 	:public Singleton<CActorManager>
@@ -18,6 +18,6 @@ private:
 public:
 	void Update();
 	void Render();
-	void CreateActor(ACTOR_TYPE eType);
+	void CreateActor(ACTOR_TYPE eType, int x = 0, int y = 0);
 };
 
