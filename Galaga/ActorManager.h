@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "EnemyRed.h"
 #include "EnemyBlue.h"
+#include "EnemyYellow.h"
 
 class CActorManager
 	:public Singleton<CActorManager>
