@@ -21,6 +21,6 @@ public:
 	void Init();
 	void Update();
 	void Render();
-	void CreateActor(ACTOR_TYPE eType, int x = 0, int y = 0);
+	void CreateActor(ACTOR_TYPE eType, int x = 0, int y = 0, bool direction = false);
 };
 

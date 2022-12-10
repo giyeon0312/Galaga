@@ -34,7 +34,7 @@ public:
 	}
 
 public:
-	virtual bool Init();
+	bool Init();
 	virtual void Update() = 0;
 	//virtual void DrawActor();
 	void DrawActor();

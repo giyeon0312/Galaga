@@ -15,7 +15,8 @@ void CActorManager::Init()
 	CreateActor(ACTOR_TYPE::ACTOR_PLAYER);
 	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_RED, 20, 5);
 	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_BLUE, 10, 4);
-	CreateActor(ACTOR_ENEMY_YELLOW, 15, 2);
+	CreateActor(ACTOR_ENEMY_YELLOW, 15, 2, false);
+	CreateActor(ACTOR_ENEMY_YELLOW, 30, 2, true);
 }
 
 void CActorManager::Update()
@@ -38,7 +39,7 @@ void CActorManager::Render()
 	}
 }
 
-void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y)
+void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 {
 	CActor* pActor = NULL;
 
@@ -54,7 +55,7 @@ void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y)
 		pActor = new CEnemyBlue(x, y);
 		break;
 	case ACTOR_ENEMY_YELLOW:
-		pActor = new CEnemyYellow(x, y);
+		pActor = new CEnemyYellow(x, y, direction);
 		break;
 	case ACTOR_EBULLET:
 		break;

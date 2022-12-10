@@ -7,12 +7,15 @@ class CEnemyYellow :
 {
 public:
     CEnemyYellow();
-    CEnemyYellow(int x, int y);
+    CEnemyYellow(int x, int y, bool direction = false);
     virtual ~CEnemyYellow();
 
 public:
-    virtual bool Init();
-    virtual bool Init(int x, int y);
+    bool Init();
+    bool Init(int x, int y,int direction = 0);
     virtual void Update();
+
+private:
+    bool m_bDirection; // 0: 우측하단, 1: 좌측하단
 };
 

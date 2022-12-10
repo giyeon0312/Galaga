@@ -10,8 +10,8 @@ public:
     virtual ~CEnemy();
 
 public:
-    virtual bool Init();
-    virtual bool Init(int x, int y);
+    bool Init();
+    bool Init(int x, int y);
     virtual void Update();
 
 protected:

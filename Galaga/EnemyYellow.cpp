@@ -5,9 +5,9 @@ CEnemyYellow::CEnemyYellow()
 	Init();
 }
 
-CEnemyYellow::CEnemyYellow(int x, int y)
+CEnemyYellow::CEnemyYellow(int x, int y, bool direction)
 {
-	Init(x,y);
+	Init(x,y, direction);
 }
 
 CEnemyYellow::~CEnemyYellow()
@@ -36,10 +36,11 @@ bool CEnemyYellow::Init()
 	return true;
 }
 
-bool CEnemyYellow::Init(int x, int y)
+bool CEnemyYellow::Init(int x, int y, int direction) 
 {
 	m_sActor = "}{";
 	m_nActorColor = 14;
+	m_bDirection = direction;
 
 	// 초기 위치
 	m_tPos.x = x;
@@ -64,6 +65,14 @@ void CEnemyYellow::Update()
 	else
 		m_nCurrentIdx = 0;
 
-	m_tPos.x += m_aPattern[m_nCurrentIdx].x;
-	m_tPos.y += m_aPattern[m_nCurrentIdx].y;
+	if (!m_bDirection)
+	{
+		m_tPos.x += m_aPattern[m_nCurrentIdx].x;
+		m_tPos.y += m_aPattern[m_nCurrentIdx].y;
+	}
+	else
+	{
+		m_tPos.x -= m_aPattern[m_nCurrentIdx].x;
+		m_tPos.y += m_aPattern[m_nCurrentIdx].y;
+	}
 }
