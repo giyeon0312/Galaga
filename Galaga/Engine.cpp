@@ -27,7 +27,7 @@ bool CEngine::Init()
 		return false;
 
 	CActorManager::GetInstance()->Init();
-	
+
 	return true;
 }
 
@@ -44,6 +44,25 @@ void CEngine::Run()
 
 		Sleep(5);
 	}
+}
+
+void CEngine::ShowTitle()
+{
+	cout << "\n";
+	cout << "	                          *   *                           \n";
+	cout << "	                    *                   *                 \n";
+	cout << "	                *          **                *            \n";
+	cout << "	      ******  *           * *                    *  *     \n";
+	cout << "	    **      **             **	             *       *    \n";
+	cout << "	   **              ****    **    ****    ****     ****    \n";
+	cout << "	  **              *   **   **  *   **  **   **  *   **    \n";
+	cout << "	 **          ***   ** **   **   ** **   ****     ** **    \n";
+	cout << "	 ***      *****  **   **   ** **   **   **     **   **    \n";
+	cout << "	  ********  **   **** *** *** **** ***  *  *** **** ***   \n";
+	cout << "	          ***                         **    ***           \n";
+	cout << "	                                        ******            \n";
+
+	Sleep(5000);
 }
 
 void CEngine::SetConsolePos(int x, int y)
