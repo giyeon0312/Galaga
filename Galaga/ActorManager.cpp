@@ -10,6 +10,13 @@ CActorManager::~CActorManager()
 {
 }
 
+void CActorManager::Init()
+{
+	CreateActor(ACTOR_TYPE::ACTOR_PLAYER);
+	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_RED, 20, 5);
+	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_BLUE, 10, 4);
+}
+
 void CActorManager::Update()
 {
 	int cnt = m_pActors.size();
@@ -30,33 +37,35 @@ void CActorManager::Render()
 	}
 }
 
-void CActorManager::CreateActor(ACTOR_TYPE eType,int x = 0, int y = 0)
+void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y)
 {
 	CActor* pActor = NULL;
-	
-	switch(eType)
+
+	switch (eType)
 	{
-		case ACTOR_PLAYER:
-			pActor = new CPlayer();
-			break;
-		case ACTOR_PBULLET:
-			break;
-		case ACTOR_ENEMY_RED:
-			pActor = new CEnemyRed();
-			break;
-		case ACTOR_ENEMY_BLUE:
-			break;
-		case ACTOR_ENEMY_YELLOW: 
-			break;
-		case ACTOR_EBULLET: 
-			break;
-	
+	case ACTOR_PLAYER:
+		pActor = new CPlayer();
+		break;
+	case ACTOR_ENEMY_RED:
+		pActor = new CEnemyRed(x, y);
+		break;
+	case ACTOR_ENEMY_BLUE:
+		pActor = new CEnemyBlue(x, y);
+		break;
+	case ACTOR_ENEMY_YELLOW:
+		break;
+	case ACTOR_EBULLET:
+		break;
+	case ACTOR_PBULLET:
+		break;
 	}
 
-	if (!pActor->Init())
-	{
-		SAFE_DELETE(pActor);
-	}
+	//if (!pActor->Init())
+	//{
+	//	SAFE_DELETE(pActor);
+	//}
 
 	m_pActors.push_back(pActor);
 }
+
+

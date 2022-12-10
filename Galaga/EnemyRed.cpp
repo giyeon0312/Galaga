@@ -4,6 +4,11 @@ CEnemyRed::CEnemyRed()
 {
 }
 
+CEnemyRed::CEnemyRed(int x , int y)
+{
+	Init(x, y);
+}
+
 CEnemyRed::~CEnemyRed()
 {
 }
@@ -40,11 +45,14 @@ bool CEnemyRed::Init(int x, int y)
 	m_tPos.y = y;
 
 	// 움직일 패턴 입력. ( 현재 위치에 더해서 사용한다.)
-	m_aPattern.push_back(POSITION(x + 2, y));
+	/*m_aPattern.push_back(POSITION(x + 2, y));
 	m_aPattern.push_back(POSITION(x + 2, y));
 	m_aPattern.push_back(POSITION(x - 2, y));
-	m_aPattern.push_back(POSITION(x - 2, y));
-
+	m_aPattern.push_back(POSITION(x - 2, y));*/
+	m_aPattern.push_back(POSITION(2, 0));
+	m_aPattern.push_back(POSITION(2, 0));
+	m_aPattern.push_back(POSITION(-2, 0));
+	m_aPattern.push_back(POSITION(-2, 0));
 
 	m_nPatternSize = m_aPattern.size();
 	m_nCurrentIdx = 0;

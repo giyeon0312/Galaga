@@ -6,6 +6,7 @@
 
 CPlayer::CPlayer()
 {
+	Init();
 }
 
 CPlayer::~CPlayer()

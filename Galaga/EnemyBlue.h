@@ -1,13 +1,14 @@
 #pragma once
 #include "Enemy.h"
 
-class CEnemyRed :
-	public CEnemy
+
+class CEnemyBlue:
+    public CEnemy
 {
 public:
-    CEnemyRed();
-    CEnemyRed(int x, int y);
-    virtual ~CEnemyRed();
+    CEnemyBlue();
+    CEnemyBlue(int x, int y);
+    virtual ~CEnemyBlue();
 
 public:
     virtual bool Init();

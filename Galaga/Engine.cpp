@@ -26,11 +26,8 @@ bool CEngine::Init()
 	if (!CStageManager::GetInstance()->Init())
 		return false;
 
-	// 액터 매니저 Init같은 것을 추가할 것.
-	CActorManager::GetInstance()->CreateActor(ACTOR_TYPE::ACTOR_PLAYER);
-	CActorManager::GetInstance()->CreateActor(ACTOR_TYPE::ACTOR_ENEMY_RED);
-
-
+	CActorManager::GetInstance()->Init();
+	
 	return true;
 }
 
@@ -46,7 +43,6 @@ void CEngine::Run()
 		CActorManager::GetInstance()->Render(); // 액터 렌더.
 
 		Sleep(5);
-
 	}
 }
 
