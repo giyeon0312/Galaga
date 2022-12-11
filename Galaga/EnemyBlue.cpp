@@ -1,5 +1,5 @@
 #include "EnemyBlue.h"
-
+#include "ActorManager.h"
 
 CEnemyBlue::CEnemyBlue()
 {
@@ -70,4 +70,12 @@ void CEnemyBlue::Update()
 
 	m_tPos.x += m_aPattern[m_nCurrentIdx].x;
 	m_tPos.y += m_aPattern[m_nCurrentIdx].y;
+
+	if (m_nCurrentIdx == m_nPatternSize / 2)
+		Shoot();
+}
+
+void CEnemyBlue::Shoot()
+{
+	CActorManager::GetInstance()->CreateEBullet( m_tPos.x, m_tPos.y);
 }

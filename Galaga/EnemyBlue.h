@@ -14,5 +14,8 @@ public:
     bool Init();
     bool Init(int x, int y);
     virtual void Update();
+
+private:
+    void Shoot();
 };
 
