@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "StageManager.h"
+#include "ActorManager.h"
 #include "Stage.h"
 
 #include <Windows.h>
@@ -46,6 +47,12 @@ void CPlayer::Update()
 	{
 		MoveDown();
 	}
+
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		Shoot();
+	}
+
 }
 
 
@@ -80,4 +87,9 @@ void CPlayer::MoveLeft()
 	if (pCurStage->GetStageState(m_tPos.x - 2, m_tPos.y) != 0)
 		return;
 	m_tPos.x -= 2;
+}
+
+void CPlayer::Shoot()
+{
+	CActorManager::GetInstance()->CreateActor(ACTOR_PBULLET, m_tPos.x, m_tPos.y);
 }

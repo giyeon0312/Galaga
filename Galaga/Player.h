@@ -17,5 +17,6 @@ public:
     void MoveUp();
     void MoveRight();
     void MoveLeft();
+    void Shoot();
 };
 

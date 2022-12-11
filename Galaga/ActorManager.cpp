@@ -40,6 +40,12 @@ void CActorManager::Update()
 		else
 			iter++;
 	}
+
+	// 충돌 처리.
+	/*
+	* 이중 for문 돌면서 positon이 겹치면 
+	*/
+	
 }
 
 void CActorManager::Render()
@@ -73,6 +79,7 @@ void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 	case ACTOR_EBULLET:
 		break;
 	case ACTOR_PBULLET:
+		pActor = new CPBullet(x, y);
 		break;
 	}
 

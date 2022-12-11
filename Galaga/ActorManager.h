@@ -6,6 +6,7 @@
 #include "EnemyRed.h"
 #include "EnemyBlue.h"
 #include "EnemyYellow.h"
+#include "PBullet.h"
 
 class CActorManager
 	:public Singleton<CActorManager>
