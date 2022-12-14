@@ -91,5 +91,5 @@ void CPlayer::MoveLeft()
 
 void CPlayer::Shoot()
 {
-	CActorManager::GetInstance()->CreateActor(ACTOR_PBULLET, m_tPos.x, m_tPos.y);
+	CActorManager::GetInstance()->CreatePBullet(m_tPos.x, m_tPos.y);
 }

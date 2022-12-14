@@ -17,8 +17,10 @@ public:
 	~CActorManager();
 
 private:
+	CPlayer* m_pPlayer;
 	vector<CActor*> m_pActors;
 	vector<CEBullet*> m_pEBullets;
+	vector<CPBullet*> m_pPBullets;
 
 public:
 	void Init();
@@ -26,5 +28,6 @@ public:
 	void Render();
 	void CreateActor(ACTOR_TYPE eType, int x = 0, int y = 0, bool direction = false);
 	void CreateEBullet(int x, int y);
+	void CreatePBullet(int x, int y);
 };
 

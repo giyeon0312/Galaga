@@ -12,7 +12,7 @@ CActorManager::~CActorManager()
 
 void CActorManager::Init()
 {
-	CreateActor(ACTOR_TYPE::ACTOR_PLAYER);
+	m_pPlayer = new CPlayer();
 	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_RED, 20, 5);
 	CreateActor(ACTOR_TYPE::ACTOR_ENEMY_BLUE, 10, 4);
 	CreateActor(ACTOR_ENEMY_YELLOW, 15, 2, false);
@@ -21,6 +21,8 @@ void CActorManager::Init()
 
 void CActorManager::Update()
 {
+	m_pPlayer->Update();
+
 	int cnt = m_pActors.size();
 
 	for (vector<CActor*>::iterator iter = m_pActors.begin(); iter != m_pActors.end();)
@@ -58,6 +60,25 @@ void CActorManager::Update()
 		else
 			iter++;
 	}
+
+	for (vector<CPBullet*>::iterator iter = m_pPBullets.begin(); iter != m_pPBullets.end();)
+	{
+		CPBullet* actor = *iter;
+		actor->Update();
+
+		// 테두리 밖으로 나가면 삭제하기.
+		POSITION pos = actor->GetPosition();
+		if (pos.y <= 0 || pos.y >= STAGE_HEIGHT || pos.x <= 0 || pos.x >= STAGE_WIDTH)
+		{
+			// 벡터에서 지우고
+			SAFE_DELETE(actor);
+			iter = m_pPBullets.erase(iter); // 다음 iterator 반환한다.
+			// 삭제 됐을 경우 다음 iter를 여기서 받아가기 때문에 iter++를 하면 다음을 건너뛰게 된다.
+		}
+		else
+			iter++;
+	}
+
 	// 충돌 처리.
 	/*
 	* 이중 for문 돌면서 positon이 겹치면 
@@ -67,6 +88,8 @@ void CActorManager::Update()
 
 void CActorManager::Render()
 {
+	m_pPlayer->DrawActor();
+
 	int cnt = m_pActors.size();
 	for (int i = 0; i < cnt; i++)
 	{
@@ -81,6 +104,12 @@ void CActorManager::Render()
 		bullet->DrawActor();
 	}
 
+	cnt = m_pPBullets.size();
+	for (int i = 0; i < cnt; i++)
+	{
+		CActor* bullet = m_pPBullets[i];
+		bullet->DrawActor();
+	}
 }
 
 void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
@@ -120,6 +149,11 @@ void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 void CActorManager::CreateEBullet(int x, int y)
 {
 	m_pEBullets.push_back(new CEBullet(x, y));
+}
+
+void CActorManager::CreatePBullet(int x, int y)
+{
+	m_pPBullets.push_back(new CPBullet(x, y));
 }
 
 
