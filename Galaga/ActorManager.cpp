@@ -23,9 +23,9 @@ void CActorManager::Update()
 {
 	m_pPlayer->Update();
 
-	int cnt = m_pActors.size();
+	int cnt = m_pEnemys.size();
 
-	for (vector<CActor*>::iterator iter = m_pActors.begin(); iter != m_pActors.end();)
+	for (vector<CEnemy*>::iterator iter = m_pEnemys.begin(); iter != m_pEnemys.end();)
 	{
 		CActor* actor = *iter;
 		actor->Update();
@@ -36,7 +36,7 @@ void CActorManager::Update()
 		{
 			// 벡터에서 지우고
 			SAFE_DELETE(actor);
-			iter = m_pActors.erase(iter); // 다음 iterator 반환한다.
+			iter = m_pEnemys.erase(iter); // 다음 iterator 반환한다.
 			// 삭제 됐을 경우 다음 iter를 여기서 받아가기 때문에 iter++를 하면 다음을 건너뛰게 된다.
 		}
 		else
@@ -80,20 +80,68 @@ void CActorManager::Update()
 	}
 
 	// 충돌 처리.
-	/*
-	* 이중 for문 돌면서 positon이 겹치면 
-	*/
+	// 에너미 충돌 처리.
+	for (vector<CPBullet*>::iterator pBulletIter = m_pPBullets.begin(); pBulletIter != m_pPBullets.end(); pBulletIter++)
+	{
+		CPBullet* pBullet = *pBulletIter;
+		POSITION bulletPos = pBullet->GetPosition();
+		for (vector<CEnemy*>::iterator enemyIter = m_pEnemys.begin(); enemyIter != m_pEnemys.end();)
+		{
+			CEnemy* pEnemy = *enemyIter;
+			POSITION enemyPos = pEnemy->GetPosition();
+			if ((bulletPos.x == enemyPos.x) && (bulletPos.y == enemyPos.y))
+			{
+				// 벡터에서 지우고
+				SAFE_DELETE(pEnemy);
+				enemyIter = m_pEnemys.erase(enemyIter); // 다음 iterator 반환한다.
+			}
+			else
+				enemyIter++;
+		}
+	}
 	
+	// 에너미 충돌 체크.
+	for (vector<CPBullet*>::iterator pBulletIter = m_pPBullets.begin(); pBulletIter != m_pPBullets.end(); pBulletIter++)
+	{
+		CPBullet* pBullet = *pBulletIter;
+		POSITION bulletPos = pBullet->GetPosition();
+		for (vector<CEnemy*>::iterator enemyIter = m_pEnemys.begin(); enemyIter != m_pEnemys.end();)
+		{
+			CEnemy* pEnemy = *enemyIter;
+			POSITION enemyPos = pEnemy->GetPosition();
+			if ((bulletPos.x == enemyPos.x) && (bulletPos.y == enemyPos.y))
+			{
+				// 벡터에서 지우고
+				SAFE_DELETE(pEnemy);
+				enemyIter = m_pEnemys.erase(enemyIter); // 다음 iterator 반환한다.
+			}
+			else
+				enemyIter++;
+		}
+	}
+
+	// 플레이어 충돌 체크.
+	for (vector<CEBullet*>::iterator eBulletIter = m_pEBullets.begin(); eBulletIter != m_pEBullets.end(); eBulletIter++)
+	{
+		CEBullet* eBullet = *eBulletIter;
+		POSITION bulletPos = eBullet->GetPosition();
+		POSITION playerPos = m_pPlayer->GetPosition();
+		if ((bulletPos.x == playerPos.x) && (bulletPos.y == playerPos.y))
+		{
+			CEngine::GetInstance()->End();
+		}
+	}
+
 }
 
 void CActorManager::Render()
 {
 	m_pPlayer->DrawActor();
 
-	int cnt = m_pActors.size();
+	int cnt = m_pEnemys.size();
 	for (int i = 0; i < cnt; i++)
 	{
-		CActor* actor = m_pActors[i];
+		CActor* actor = m_pEnemys[i];
 		actor->DrawActor();
 	}
 
@@ -114,13 +162,14 @@ void CActorManager::Render()
 
 void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 {
-	CActor* pActor = NULL;
+	//CActor* pActor = NULL;
+	CEnemy* pActor = NULL;
 
 	switch (eType)
 	{
-	case ACTOR_PLAYER:
-		pActor = new CPlayer();
-		break;
+	//case ACTOR_PLAYER:
+	//	pActor = new CPlayer();
+	//	break;
 	case ACTOR_ENEMY_RED:
 		pActor = new CEnemyRed(x, y);
 		break;
@@ -130,12 +179,12 @@ void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 	case ACTOR_ENEMY_YELLOW:
 		pActor = new CEnemyYellow(x, y, direction);
 		break;
-	case ACTOR_EBULLET:
-		pActor = new CEBullet(x, y);
-		break;
-	case ACTOR_PBULLET:
-		pActor = new CPBullet(x, y);
-		break;
+	//case ACTOR_EBULLET:
+	//	pActor = new CEBullet(x, y);
+	//	break;
+	//case ACTOR_PBULLET:
+	//	pActor = new CPBullet(x, y);
+	//	break;
 	}
 
 	//if (!pActor->Init())
@@ -143,7 +192,7 @@ void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)
 	//	SAFE_DELETE(pActor);
 	//}
 
-	m_pActors.push_back(pActor);
+	m_pEnemys.push_back(pActor);
 }
 
 void CActorManager::CreateEBullet(int x, int y)

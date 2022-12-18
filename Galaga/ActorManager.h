@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StdAfx.h"
+#include "Engine.h"
 #include "Actor.h"
 #include "Player.h"
 #include "EnemyRed.h"
@@ -18,7 +19,7 @@ public:
 
 private:
 	CPlayer* m_pPlayer;
-	vector<CActor*> m_pActors;
+	vector<CEnemy*> m_pEnemys;
 	vector<CEBullet*> m_pEBullets;
 	vector<CPBullet*> m_pPBullets;
 

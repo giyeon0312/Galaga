@@ -76,3 +76,8 @@ void CEngine::SetConsoleColor(int color)
 {
 	SetConsoleTextAttribute(m_hConsole, color);
 }
+
+void CEngine::End()
+{
+	m_bLoop = false;
+}

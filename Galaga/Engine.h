@@ -20,10 +20,7 @@ public:
 	void ShowTitle();
 	void SetConsolePos(int x, int y);
 	void SetConsoleColor(int color);
-	void End()
-	{
-		m_bLoop = false;
-	}
+	void End();
 
 };
 
