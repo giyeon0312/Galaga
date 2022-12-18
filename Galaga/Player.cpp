@@ -60,33 +60,33 @@ void CPlayer::MoveDown()
 {
 	// CStageManager에서 GetCurrentStage()로 m_Stage의 정보 가져와 벽이거나 다른 actor정보 있는지 확인 필요.
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
-	if (pCurStage->GetStageState(m_tPos.x, m_tPos.y + 2) != 0)
+	if (pCurStage->GetStageState(m_tPos.x, m_tPos.y + 1) != 0)
 		return;
-	m_tPos.y += 2;
+	m_tPos.y += 1;
 }
 
 void CPlayer::MoveUp()
 {
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
-	if (pCurStage->GetStageState(m_tPos.x, m_tPos.y - 2) != 0)
+	if (pCurStage->GetStageState(m_tPos.x, m_tPos.y - 1) != 0)
 		return;
-	m_tPos.y -= 2;
+	m_tPos.y -= 1;
 }
 
 void CPlayer::MoveRight()
 {
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
-	if (pCurStage->GetStageState(m_tPos.x + 2, m_tPos.y) != 0)
+	if (pCurStage->GetStageState(m_tPos.x + 1, m_tPos.y) != 0)
 		return;
-	m_tPos.x += 2;
+	m_tPos.x += 1;
 }
 
 void CPlayer::MoveLeft()
 {
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
-	if (pCurStage->GetStageState(m_tPos.x - 2, m_tPos.y) != 0)
+	if (pCurStage->GetStageState(m_tPos.x - 1, m_tPos.y) != 0)
 		return;
-	m_tPos.x -= 2;
+	m_tPos.x -= 1;
 }
 
 void CPlayer::Shoot()
