@@ -1,4 +1,5 @@
 #include "Stage.h"
+#include "Engine.h"
 
 CStage::CStage()
 {
@@ -29,6 +30,7 @@ bool CStage::Init()
 	}
 	return true;
 }
+
 
 void CStage::Render()
 {
@@ -72,5 +74,16 @@ void CStage::Render()
 			}*/
 		}
 		cout << '\n';
+	}
+	
+	for (int i = 0; i < 4; i++)
+	{
+		CEngine::GetInstance()->SetConsolePos(STAGE_WIDTH + 8,i);
+		cout << "бс";
+	}
+	for (int i = STAGE_WIDTH + 1; i <= STAGE_WIDTH + 8; i++)
+	{
+		CEngine::GetInstance()->SetConsolePos(i, 4);
+		cout << "бс";
 	}
 }

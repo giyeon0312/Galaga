@@ -128,7 +128,9 @@ void CActorManager::Update()
 		POSITION playerPos = m_pPlayer->GetPosition();
 		if ((bulletPos.x == playerPos.x) && (bulletPos.y == playerPos.y))
 		{
-			CEngine::GetInstance()->End();
+			m_pPlayer->Die();
+			if(m_pPlayer->GetHeartCnt() == 0)
+				CEngine::GetInstance()->End();
 		}
 	}
 
@@ -158,6 +160,16 @@ void CActorManager::Render()
 		CActor* bullet = m_pPBullets[i];
 		bullet->DrawActor();
 	}
+
+	// ÇÃ·¹ÀÌ¾î ¸ò¼û ±×¸®±â.
+	for (int i = 0; i < m_pPlayer->GetHeartCnt(); i++)
+	{
+		CEngine::GetInstance()->SetConsolePos(STAGE_WIDTH + 1 +  i, 2);
+		CEngine::GetInstance()->SetConsoleColor(13);  // pink
+		cout << "¢¾";
+		CEngine::GetInstance()->SetConsoleColor(0xF); // ±âº» ForeColor Èò»ö.
+	}
+
 }
 
 void CActorManager::CreateActor(ACTOR_TYPE eType, int x, int y, bool direction)

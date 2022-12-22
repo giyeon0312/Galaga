@@ -18,6 +18,7 @@ bool CPlayer::Init()
 {
 	m_sActor = "♣";
 	m_nActorColor = 0xA;
+	m_nHeart = 3;
 
 	// 초기 위치
 	m_tPos.x = 16;
@@ -55,7 +56,6 @@ void CPlayer::Update()
 
 }
 
-
 void CPlayer::MoveDown()
 {
 	// CStageManager에서 GetCurrentStage()로 m_Stage의 정보 가져와 벽이거나 다른 actor정보 있는지 확인 필요.
@@ -92,4 +92,22 @@ void CPlayer::MoveLeft()
 void CPlayer::Shoot()
 {
 	CActorManager::GetInstance()->CreatePBullet(m_tPos.x, m_tPos.y);
+}
+
+
+int CPlayer::GetHeartCnt()
+{
+	return m_nHeart;
+}
+
+void CPlayer::SetHeartCnt(int heart)
+{
+	m_nHeart = heart;
+}
+
+void CPlayer::Die()
+{
+	m_nHeart--;
+	m_tPos.x = 16;
+	m_tPos.y = 24;
 }
