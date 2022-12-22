@@ -5,6 +5,12 @@ using namespace std;
 
 int main()
 {
+	// 콘솔 위치, 크기 설정.
+	HWND console = GetConsoleWindow();
+	RECT rect;
+	GetWindowRect(console, &rect); 
+	MoveWindow(console, 100, 200, 800, 800, true);
+
 	if (!CEngine::GetInstance()->Init())
 	{
 		CEngine::GetInstance()->DestroyInstance();

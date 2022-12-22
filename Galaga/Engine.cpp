@@ -80,4 +80,5 @@ void CEngine::SetConsoleColor(int color)
 void CEngine::End()
 {
 	m_bLoop = false;
+
 }
